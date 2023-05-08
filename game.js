@@ -30,25 +30,6 @@ function moveTile(currentTile, targetTile, animationClass) {
     targetTile.classList.remove('new');
   }, 200);
 } */
-function moveTile(currentTile, targetTile, animationClass) {
-  const currentRect = currentTile.getBoundingClientRect();
-  const targetRect = targetTile.getBoundingClientRect();
-  const deltaX = targetRect.left - currentRect.left;
-  const deltaY = targetRect.top - currentRect.top;
-
-  //currentTile.style.transition = 'transform 200ms ease';
-  currentTile.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-
-  setTimeout(function () {
-    colors();
-    currentTile.classList.remove(animationClass);
-    currentTile.style.transition = '';
-    currentTile.style.transform = '';
-    targetTile.classList.remove('new');
-  }, 1000);
-}
-
-
 
 // checking for merge
 function canEat(i, j, newTile){

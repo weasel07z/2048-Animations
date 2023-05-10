@@ -20,6 +20,11 @@ document.addEventListener('keydown', function(key) {
     }
     colors();
 }, true);
+window.addEventListener("keydown", function(e) {
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 // Sliding animation :3
 /*

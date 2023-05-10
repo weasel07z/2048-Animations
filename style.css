@@ -22,7 +22,11 @@ h1 {
   color: #605858;
   line-height: 0px;
 }
-p.one {
+hr {
+  position: relative;
+  width:460px;
+}
+p {
   position: relative;
   font-size: 18px;
   font-family: Verdana, sans-serif;

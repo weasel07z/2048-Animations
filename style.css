@@ -49,6 +49,7 @@ p {
   overflow: hidden;
   background-color: #bbada0;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 .tile {
   position: relative;

@@ -22,9 +22,13 @@ h1 {
   color: #605858;
   line-height: 0px;
 }
-hr {
+hr.normal {
   position: relative;
   width:460px;
+}
+hr.top {
+  position: relative;
+  width: 460px;
   margin-top: 10px;
 }
 p {

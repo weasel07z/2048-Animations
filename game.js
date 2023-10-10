@@ -1,6 +1,6 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
-const multi = document.querySelector('.multi');
+//const multi = document.querySelector('.multi');
 var multiplier = 2;
 
 // Get keyboard inputs
@@ -314,7 +314,7 @@ function removeAllClass(thing){
     thing.classList.remove('fourtyninetysix');
     thing.classList.remove('passed');
 }
-
+//<button class="multi" onclick="setMultiplier()">Current Mulitplier: 2</button>
 function setMultiplier() {
     let m = prompt("Set Multiplier: ", "2");
     if(m == null || m == "") {
@@ -322,7 +322,7 @@ function setMultiplier() {
     } else {
         if(multiplier != parseInt(m)){
             multiplier = parseInt(m);
-            multi.innerText = "Current Multiplier: " + m;
+            //multi.innerText = "Current Multiplier: " + m;
             resetGame();
         }
     }

@@ -1,6 +1,7 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
 //const multi = document.querySelector('.multi');
+
 var multiplier = 2;
 
 // Get keyboard inputs
@@ -18,6 +19,8 @@ document.addEventListener('keydown', function(key) {
         resetGame();
     } else if(key.keyCode == 77) {
         setMultiplier();
+    } else if(key.keyCode == 51){
+        colonThree();
     }
     if(moved){
       spawnRandomTile();
@@ -326,4 +329,14 @@ function setMultiplier() {
             resetGame();
         }
     }
+}
+
+function colonThree() {
+    const title = document.querySelector(".dipshit");
+    if(title.innerText == "2048 :3"){
+        title.innerText = "2048";
+    } else {
+        title.innerText = "2048 :3";
+    }
+
 }

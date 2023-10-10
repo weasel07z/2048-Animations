@@ -74,8 +74,13 @@ function createGameboard() {
 function spawnRandomTile() {
   const emptyTiles = tiles.filter(tile => !tile.innerText);
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
-  randomTile.innerText = Math.random() < 0.9 ? '2' : '4';
-  randomTile.classList.add('new');
+  if(multiplier != 2){
+    randomTile.innerText = 2;
+    randomTile.classList.add('new');
+  } else {
+    randomTile.innerText = Math.random() < 0.9 ? '2' : '4';
+    randomTile.classList.add('new');
+  } 
 }
 // Get tile at certain row and column
 function getTile(row, col){

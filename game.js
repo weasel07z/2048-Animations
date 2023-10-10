@@ -1,7 +1,7 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
 const multi = document.querySelector('.multi');
-var multiplier = 2;
+var multiplier = 3;
 
 // Get keyboard inputs
 document.addEventListener('keydown', function(key) {
@@ -252,34 +252,34 @@ function colors(){
             if(!temp.innerText){
                 removeAllClass(temp);
                 temp.classList.add('zero');
-            } else if(temp.innerText == 2){
+            } else if(temp.innerText == 2 || temp.innerText < 4){
                 removeAllClass(temp);
                 temp.classList.add('two');
-            } else if(temp.innerText == 4){
+            } else if(temp.innerText == 4 || temp.innerText < 8){
                 removeAllClass(temp);
                 temp.classList.add('four');
-            } else if(temp.innerText == 8){
+            } else if(temp.innerText == 8 || temp.innerText < 16){
                 removeAllClass(temp);
                 temp.classList.add('eight');
-            } else if(temp.innerText == 16){
+            } else if(temp.innerText == 16 || temp.innerText < 32){
                 removeAllClass(temp);
                 temp.classList.add('sixteen');
-            } else if(temp.innerText == 32){
+            } else if(temp.innerText == 32 || temp.innerText < 64){
                 removeAllClass(temp);
                 temp.classList.add('thirtytwo');
-            } else if(temp.innerText == 64){
+            } else if(temp.innerText == 64 || temp.innerText < 128){
                 removeAllClass(temp);
                 temp.classList.add('sixtyfour');
-            } else if(temp.innerText == 128){
+            } else if(temp.innerText == 128 || temp.innerText < 256){
                 removeAllClass(temp);
                 temp.classList.add('onetwentyeight');
-            } else if(temp.innerText == 256){
+            } else if(temp.innerText == 256 || temp.innerText < 512){
                 removeAllClass(temp);
                 temp.classList.add('twofiftysix');
-            } else if(temp.innerText == 512){
+            } else if(temp.innerText == 512 || temp.innerText < 1024){
                 removeAllClass(temp);
                 temp.classList.add('fivetwelve');
-            } else if(temp.innerText == 1024){
+            } else if(temp.innerText == 1024 || temp.innerText < 2048){
                 removeAllClass(temp);
                 temp.classList.add('tentwentyfour');
             } else if(temp.innerText == 2048){
@@ -316,10 +316,8 @@ function removeAllClass(thing){
 function setMultiplier(){
     multi.style.color = "blue";
     let m = prompt("Set Multiplier: ", "3");
-    if(m == null || m == "") {
-        multiplier = 2;
-    } else {
-        multi.innerText = "Current Multiplier: " + m;
+    if(Number.isInteger(m)) {
         multiplier = parseInt(m);
+        multi.innerText = "Current Multiplier: " + m;
     }
 }

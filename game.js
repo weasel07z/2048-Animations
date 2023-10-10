@@ -344,7 +344,7 @@ function setMultiplier() {
     }
     if(m == null || m == "") {
         //pass
-    } else if (parseInt(m) == null || parseInt(m) == ""){
+    } else if (!(Number.isInteger(parseInt(m)))){
       //pass
     } else {
         if(multiplier != parseInt(m)){

@@ -323,6 +323,7 @@ function setMultiplier() {
         if(multiplier != parseInt(m)){
             multiplier = parseInt(m);
             multi.innerText = "Current Multiplier: " + m;
+            resetGame();
         }
     }
 }

@@ -1,5 +1,7 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
+const multi = document.querySelector('.multi');
+var multiplier = 2;
 
 // Get keyboard inputs
 document.addEventListener('keydown', function(key) {
@@ -100,7 +102,7 @@ function moveLeft(){
                 }
                 if(canEat(newI, newJ-1, curTile)){
                   const newTile = getTile(newI, newJ-1);
-                  newTile.innerText = parseInt(newTile.innerText)*2;
+                  newTile.innerText = parseInt(newTile.innerText)*multiplier;
                   //moveTile(curTile, newTile, 'slide-left');
                   curTile.innerText = '';
                   newTile.classList.add('merged');
@@ -140,7 +142,7 @@ function moveRight(){
                 }
                 if(canEat(newI, newJ+1, curTile)){
                   const newTile = getTile(newI, newJ+1);
-                  newTile.innerText = parseInt(newTile.innerText)*2;
+                  newTile.innerText = parseInt(newTile.innerText)*multiplier;
                   curTile.innerText = '';
                   newTile.classList.add('merged');
                   curTile.classList.remove('new');
@@ -179,7 +181,7 @@ function moveDown(){
                 }
                 if(canEat(newI+1, newJ, curTile)){
                   const newTile = getTile(newI+1, newJ);
-                  newTile.innerText = parseInt(newTile.innerText)*2;
+                  newTile.innerText = parseInt(newTile.innerText)*multiplier;
                   curTile.innerText = '';
                   newTile.classList.add('merged');
                   curTile.classList.remove('new');
@@ -216,7 +218,7 @@ function moveUp(){
                 }
                 if(canEat(newI-1, newJ, curTile)){
                   const newTile = getTile(newI-1, newJ);
-                  newTile.innerText = parseInt(newTile.innerText)*2;
+                  newTile.innerText = parseInt(newTile.innerText)*multiplier;
                   curTile.innerText = '';
                   newTile.classList.add('merged');
                   curTile.classList.remove('new');
@@ -309,4 +311,15 @@ function removeAllClass(thing){
     thing.classList.remove('twentyfourtyeight');
     thing.classList.remove('fourtyninetysix');
     thing.classList.remove('passed');
+}
+
+function setMultiplier(){
+    multi.style.color = "blue";
+    let m = prompt("Set Multiplier: ", "3");
+    if(m == null || m == "") {
+        multiplier = 2;
+    } else {
+        multi.innerText = "Current Multiplier: " + m;
+        multiplier = parseInt(m);
+    }
 }

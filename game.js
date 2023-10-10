@@ -1,7 +1,7 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
 const multi = document.querySelector('.multi');
-var multiplier = 3;
+var multiplier = 2;
 
 // Get keyboard inputs
 document.addEventListener('keydown', function(key) {
@@ -314,8 +314,7 @@ function removeAllClass(thing){
 }
 
 function setMultiplier(){
-    multi.style.color = "blue";
-    let m = prompt("Set Multiplier: ", "3");
+    let m = prompt("Set Multiplier: ", "2");
     if(Number.isInteger(m)) {
         multiplier = parseInt(m);
         multi.innerText = "Current Multiplier: " + m;

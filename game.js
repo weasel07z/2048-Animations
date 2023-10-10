@@ -315,7 +315,7 @@ function removeAllClass(thing){
 
 function setMultiplier(){
     let m = prompt("Set Multiplier: ", "2");
-    if(Number.isInteger(m)) {
+    if(Number.isInteger(parseInt(m))) {
         multiplier = parseInt(m);
         multi.innerText = "Current Multiplier: " + m;
     }

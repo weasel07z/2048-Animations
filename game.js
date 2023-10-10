@@ -1,26 +1,38 @@
 const gameboard = document.querySelector('.gameboard');
 const tiles = [];
-//const multi = document.querySelector('.multi');
 
+hasK = false;
+hasY = false;
+hasS = false;
+//const multi = document.querySelector('.multi');
 var multiplier = 2;
+
 
 // Get keyboard inputs
 document.addEventListener('keydown', function(key) {
     let moved = false;
-    if (key.keyCode == 37) {
+    if (key.keyCode == 37 || key.keyCode == 65) { // left_arrow_key or a
         moved = moveLeft();
-    } else if (key.keyCode == 38) {
+    } else if (key.keyCode == 38 || key.keyCode == 87) { // up_arrow_key or w
         moved = moveUp();
-    } else if(key.keyCode == 39) {
+    } else if(key.keyCode == 39 || key.keyCode == 68) { // right_arrow_key or d
         moved = moveRight();
-    } else if(key.keyCode == 40) {
+    } else if(key.keyCode == 40 || key.keyCode == 83) { // down_arrow_key or s
+        hasS = true;
+        keepYourselfSafe();
         moved = moveDown();
-    } else if(key.keyCode == 82){
+    } else if(key.keyCode == 82) { // r
         resetGame();
-    } else if(key.keyCode == 77) {
+    } else if(key.keyCode == 77) { // m
         setMultiplier();
-    } else if(key.keyCode == 51){
+    } else if(key.keyCode == 51) { // 3
         colonThree();
+    } else if(key.keyCode == 75) { // k
+        hasK = true;
+        keepYourselfSafe();
+    } else if(key.keyCode == 89) { // y
+        hasY = true;
+        keepYourselfSafe();
     }
     if(moved){
       spawnRandomTile();
@@ -33,7 +45,8 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
-// Sliding animation :3
+
+// Sliding animation :3 nvm fuck this 
 /*
 function moveTile(currentTile, targetTile, animationClass) {
   currentTile.classList.add(animationClass);
@@ -325,6 +338,10 @@ function removeAllClass(thing){
 //<button class="multi" onclick="setMultiplier()">Current Mulitplier: 2</button>
 function setMultiplier() {
     let m = prompt("Set Multiplier: ", "2");
+    if(m.includes("kys")){
+        const title = document.querySelector(".dipshit");
+        title.innerText = "🖕"
+    }
     if(m == null || m == "") {
         //pass
     } else {
@@ -344,4 +361,10 @@ function colonThree() {
         title.innerText = "2048 :3";
     }
 
+}
+function keepYourselfSafe(){
+    const title = document.querySelector(".dipshit");
+    if(hasK && hasY && hasS){
+        title.innerText = "🖕"
+    }
 }

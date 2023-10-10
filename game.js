@@ -16,6 +16,8 @@ document.addEventListener('keydown', function(key) {
         moved = moveDown();
     } else if(key.keyCode == 82){
         resetGame();
+    } else if(key.keyCode == 77) {
+        setMultiplier();
     }
     if(moved){
       spawnRandomTile();
@@ -313,10 +315,14 @@ function removeAllClass(thing){
     thing.classList.remove('passed');
 }
 
-function setMultiplier(){
+function setMultiplier() {
     let m = prompt("Set Multiplier: ", "2");
-    if(Number.isInteger(parseInt(m))) {
-        multiplier = parseInt(m);
-        multi.innerText = "Current Multiplier: " + m;
+    if(m == null || m == "") {
+        //pass
+    } else {
+        if(multiplier != parseInt(m)){
+            multiplier = parseInt(m);
+            multi.innerText = "Current Multiplier: " + m;
+        }
     }
 }

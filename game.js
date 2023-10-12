@@ -4,6 +4,8 @@ const tiles = [];
 hasK = false;
 hasY = false;
 hasS = false;
+
+//var isShadowToggled = true;
 //const multi = document.querySelector('.multi');
 var multiplier = 2;
 
@@ -370,3 +372,40 @@ function keepYourselfSafe(){
         title.innerText = "🖕"
     }
 }
+/*
+function toggleShadow(){
+    var empties = document.getElementsByClassName("tile");
+    if(isShadowToggled) {
+        for(var i = 0; i < 4; i++){
+            for(var j = 0; j < 4; j++){
+                var t = empties[i*4 + j];
+                if(isShadowToggled){
+                    t.style.boxShadow = "#0e0e0e00 -2px 2px 4px";
+                } else {
+                    t.style.boxShadow = "#0e0e0e38 -2px 2px 4px";
+                }
+                
+            }
+        }
+    }
+    if(isShadowToggled){
+        isShadowToggled = false;
+    } else {
+        isShadowToggled = true;
+    }
+}
+function toggleParallax(){
+    var fades = document.getElementsByClassName("fades");
+    for(var i = 0; i < 8; i++){
+        var t = fades[i];
+        if(isParallax){
+            t.style.opacity = 0;
+            isParallax = false;
+        } else {
+            t.style.opacity = 1;
+            isParallax = true;
+        }
+    }
+    isParallax = false;
+}
+*/

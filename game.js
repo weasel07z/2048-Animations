@@ -47,6 +47,75 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
+// Swiping
+var touchStartClientX, touchStartClientY;
+
+document.addEventListener('touchstart', function (event) {
+    if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
+        event.targetTouches.length > 1) {
+      return; // Ignore if touching with more than 1 finger
+    }
+    if (window.navigator.msPointerEnabled) {
+      touchStartClientX = event.pageX;
+      touchStartClientY = event.pageY;
+    } else {
+      touchStartClientX = event.touches[0].clientX;
+      touchStartClientY = event.touches[0].clientY;
+    }
+
+    event.preventDefault();
+});
+
+document.addEventListener('touchmove', function (event) {
+    event.preventDefault();
+});
+
+document.addEventListener('touchend', function (event) {
+    let moved = false;
+
+    if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
+        event.targetTouches.length > 0) {
+      return; // Ignore if still touching with one or more fingers
+    }
+
+    var touchEndClientX, touchEndClientY;
+
+    if (window.navigator.msPointerEnabled) {
+      touchEndClientX = event.pageX;
+      touchEndClientY = event.pageY;
+    } else {
+      touchEndClientX = event.changedTouches[0].clientX;
+      touchEndClientY = event.changedTouches[0].clientY;
+    }
+
+    var dx = touchEndClientX - touchStartClientX;
+    var absDx = Math.abs(dx);
+
+    var dy = touchEndClientY - touchStartClientY;
+    var absDy = Math.abs(dy);
+
+    if (Math.max(absDx, absDy) > 10) {
+      // (right : left) : (down : up)
+      if(absDx > absDy){
+        if(dx > 0) {
+            moved = moveRight();
+        } else {
+            moved = moveLeft();
+        }
+      } else {
+        if(dy > 0){
+            moved = moveDown();
+        } else {
+            moved = moveUp();
+        }
+      }
+      //self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
+    }
+    if(moved){
+        spawnRandomTile();
+    }
+    colors();
+});
 
 // Sliding animation :3 nvm fuck this 
 /*

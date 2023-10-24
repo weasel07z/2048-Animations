@@ -94,28 +94,29 @@ document.addEventListener('touchend', function (event) {
     var dy = touchEndClientY - touchStartClientY;
     var absDy = Math.abs(dy);
 
-    if (Math.max(absDx, absDy) > 10) {
+    if (Math.max(absDx, absDy) > 2) {
+        event.preventDefault();
       // (right : left) : (down : up)
-      if(absDx > absDy){
-        if(dx > 0) {
-            moved = moveRight();
-        } else {
-            moved = moveLeft();
+        if(absDx > absDy){
+            if(dx > 0) {
+                moved = moveRight();
+            } else {
+                moved = moveLeft();
+            }
+            } else {
+            if(dy > 0){
+                moved = moveDown();
+            } else {
+                moved = moveUp();
+            }
         }
-      } else {
-        if(dy > 0){
-            moved = moveDown();
-        } else {
-            moved = moveUp();
-        }
-      }
       //self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
     }
     if(moved){
         spawnRandomTile();
     }
     colors();
-    event.preventDefault();
+    
 });
 
 // Sliding animation :3 nvm fuck this 

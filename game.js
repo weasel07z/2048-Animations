@@ -115,6 +115,7 @@ document.addEventListener('touchend', function (event) {
         spawnRandomTile();
     }
     colors();
+    event.preventDefault();
 });
 
 // Sliding animation :3 nvm fuck this 

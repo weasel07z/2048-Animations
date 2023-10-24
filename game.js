@@ -49,8 +49,9 @@ window.addEventListener("keydown", function(e) {
 
 // Swiping
 var touchStartClientX, touchStartClientY;
+var gameContainer = document.getElementByClassName("container");
 
-document.addEventListener('touchstart', function (event) {
+gameContainer.addEventListener('touchstart', function (event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
         event.targetTouches.length > 1) {
       return; // Ignore if touching with more than 1 finger
@@ -66,11 +67,11 @@ document.addEventListener('touchstart', function (event) {
     event.preventDefault();
 });
 
-document.addEventListener('touchmove', function (event) {
+gameContainer.addEventListener('touchmove', function (event) {
     event.preventDefault();
 });
 
-document.addEventListener('touchend', function (event) {
+gameContainer.addEventListener('touchend', function (event) {
     let moved = false;
 
     if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
@@ -94,7 +95,7 @@ document.addEventListener('touchend', function (event) {
     var dy = touchEndClientY - touchStartClientY;
     var absDy = Math.abs(dy);
 
-    if (Math.max(absDx, absDy) > 2) {
+    if (Math.max(absDx, absDy) > 0) {
         event.preventDefault();
       // (right : left) : (down : up)
         if(absDx > absDy){

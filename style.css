@@ -270,11 +270,14 @@ button {
   width: 30%;
   border-width: 2px;
   border-color: #605858;
-  border-radius: 5px;
+  border-radius: 10px;
   height: 50px;
   padding: 10px 20px;
   font-size: 18px;
   margin-top:20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #605858;
 }
 
 .slider-container {
@@ -284,10 +287,40 @@ button {
   text-align: center;
   align-items: center;
 }
+.slider {
+  -webkit-appearance: none;
+  opacity: 0.7;
+  width: 80%;
+  height: 10px;
+  background: #605858;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 10px;
+}
+.slider:hover {
+  opacity: 0.8;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #eeac57;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
 .margins {
   margin-top:50px;
 }
 .special {
   height: 65px;
+}
+.colText {
+  position: relative;
+  left: 15px;
+}
+.rowText {
+  margin-left: 30px;;
 }

@@ -6,10 +6,10 @@ body {
 }
 .container {
   margin:auto;
-  width: 75vmin;
-  height: 75vmin;
   max-width: 500px;
   max-height: 500px;
+  width: 75vw;
+  height: 75vw;
   text-align: center;
   user-select: none;
 }

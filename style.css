@@ -8,6 +8,8 @@ body {
   margin:auto;
   width: 75vmin;
   height: 75vmin;
+  max-width: 500px;
+  max-height: 500px;
   text-align: center;
   user-select: none;
 }

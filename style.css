@@ -53,8 +53,8 @@ p {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--colSize, 4), 1fr);
+  grid-template-rows: repeat(var(--rowSize, 4), 1fr);
   gap: 10px;
   padding: 10px;
   background-color: #bbada0;
@@ -263,7 +263,7 @@ p {
   justify-content: space-evenly;
   width: 100%;
   text-align: center;
-  
+  margin-top:-20px;
 }
 
 button {
@@ -274,20 +274,20 @@ button {
   height: 50px;
   padding: 10px 20px;
   font-size: 18px;
-  margin-bottom: 50px;
+  margin-top:20px;
 }
 
-.shitter {
+.slider-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   text-align: center;
-  font-size: 15px;
-  height: 80px;
-  width: 160px;
-  margin-bottom: 20px;
-  border-width: 0px;
-  background-color: #bbada0;
-  color: #423a248e;
-  font-weight: bold;
+  align-items: center;
 }
-.shitter:active {
-  scale: 0.98;
+
+.margins {
+  margin-top:50px;
+}
+.special {
+  height: 65px;
 }

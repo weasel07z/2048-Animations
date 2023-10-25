@@ -1,9 +1,12 @@
 const gameboard = document.querySelector('.gameboard');
-const tiles = [];
+var tiles = [];
 
 hasK = false;
 hasY = false;
 hasS = false;
+
+var rowSize = 4;
+var colSize = 4;
 
 //var isShadowToggled = true;
 //const multi = document.querySelector('.multi');
@@ -133,30 +136,30 @@ function moveTile(currentTile, targetTile, animationClass) {
 
 // checking for merge
 function canEat(i, j, newTile){
-  if(i >= 4 || j >= 4 || i < 0 || j < 0){
+  if(i >= rowSize || j >= colSize || i < 0 || j < 0){
       return false;
   }
   return(parseInt(getTile(i,j).innerText) === parseInt(newTile.innerText));
 }
 // checks for open space
 function canMove(i, j){
-  if(i >= 4 || j >= 4 || i < 0 || j < 0 || tiles[i*4 + j].innerText !== ''){
+  if(i >= rowSize || j >= colSize || i < 0 || j < 0 || tiles[i*colSize + j].innerText !== ''){
       return false;
   }
   return true;
 }
 // Initializing function
 function createGameboard() {
-  for (let i = 0; i < 16; i++) {
-    const tile = document.createElement('div');
-    tile.classList.add('tile');
-    gameboard.appendChild(tile);
-    tiles.push(tile);
-  }
-  // Spawn two random tiles at start
-  spawnRandomTile();
-  spawnRandomTile();
-  colors();
+    for (let i = 0; i < (rowSize*colSize); i++) {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        gameboard.appendChild(tile);
+        tiles.push(tile);
+    }
+    // Spawn two random tiles at start
+    spawnRandomTile();
+    spawnRandomTile();
+    colors();
 }
 // spawn random tiles
 function spawnRandomTile() {
@@ -172,15 +175,13 @@ function spawnRandomTile() {
 }
 // Get tile at certain row and column
 function getTile(row, col){
-  return tiles[row*4 + col];
+  return tiles[row*colSize + col];
 }
 // Resets game to only 2 tiles
 function resetGame() {
   tiles.forEach(tile => {
-    if(tile.innerText != ''){
-        tile.innerText = '';
-        tile.classList.remove('new', 'merged');
-    }
+    tile.innerText = '';
+    tile.classList.remove('new', 'merged');
   });
   spawnRandomTile();
   spawnRandomTile();
@@ -192,8 +193,8 @@ createGameboard();
 // MOVEMENT * * * * * * * * * * * * *
 function moveLeft(){
     let moved = false;
-    for(let i = 0; i < 4; i++){
-        for(let j = 0; j < 4; j++){
+    for(let i = 0; i < rowSize; i++){
+        for(let j = 0; j < colSize; j++){
             const curTile = getTile(i, j);
             if(!!curTile.innerText){
                 var newI = i;
@@ -232,8 +233,8 @@ function moveLeft(){
 
 function moveRight(){
     let moved = false;
-    for(let i = 3; i >= 0; i--){
-        for(let j = 3; j >= 0; j--){
+    for(let i = rowSize-1; i >= 0; i--){
+        for(let j = colSize-1; j >= 0; j--){
             const curTile = getTile(i, j);
             if(curTile.innerText){
                 var newI = i;
@@ -271,8 +272,8 @@ function moveRight(){
 }
 function moveDown(){
     let moved = false;
-    for(let i = 3; i >= 0; i = i-1){
-        for(let j = 3; j >= 0 ; j = j-1){
+    for(let i = rowSize-1; i >= 0; i = i-1){
+        for(let j = colSize-1; j >= 0 ; j = j-1){
             const curTile = getTile(i, j);
             if(curTile.innerText){
                 var newI = i;
@@ -308,8 +309,8 @@ function moveDown(){
 }
 function moveUp(){
     let moved = false;
-    for(let i = 0; i < 4; i++){
-        for(let j = 0; j < 4; j++){
+    for(let i = 0; i < rowSize; i++){
+        for(let j = 0; j < colSize; j++){
             const curTile = getTile(i, j);
             if(curTile.innerText){
                 var newI = i;
@@ -346,53 +347,51 @@ function moveUp(){
 
 // Sets the colors for each tile on the board
 function colors(){
-    for(var i = 0; i < 4; i++){
-        for(var j = 0; j < 4; j++){
-            var els = document.getElementsByClassName('tile');
-            var temp = els[i*4 + j];
-            if(!temp.innerText){
-                removeAllClass(temp);
-                temp.classList.add('zero');
-            } else if(temp.innerText == 2 || temp.innerText < 4){
-                removeAllClass(temp);
-                temp.classList.add('two');
-            } else if(temp.innerText == 4 || temp.innerText < 8){
-                removeAllClass(temp);
-                temp.classList.add('four');
-            } else if(temp.innerText == 8 || temp.innerText < 16){
-                removeAllClass(temp);
-                temp.classList.add('eight');
-            } else if(temp.innerText == 16 || temp.innerText < 32){
-                removeAllClass(temp);
-                temp.classList.add('sixteen');
-            } else if(temp.innerText == 32 || temp.innerText < 64){
-                removeAllClass(temp);
-                temp.classList.add('thirtytwo');
-            } else if(temp.innerText == 64 || temp.innerText < 128){
-                removeAllClass(temp);
-                temp.classList.add('sixtyfour');
-            } else if(temp.innerText == 128 || temp.innerText < 256){
-                removeAllClass(temp);
-                temp.classList.add('onetwentyeight');
-            } else if(temp.innerText == 256 || temp.innerText < 512){
-                removeAllClass(temp);
-                temp.classList.add('twofiftysix');
-            } else if(temp.innerText == 512 || temp.innerText < 1024){
-                removeAllClass(temp);
-                temp.classList.add('fivetwelve');
-            } else if(temp.innerText == 1024 || temp.innerText < 2048){
-                removeAllClass(temp);
-                temp.classList.add('tentwentyfour');
-            } else if(temp.innerText == 2048){
-                removeAllClass(temp);
-                temp.classList.add('twentyfourtyeight');
-            } else if(temp.innerText.length < 5){
-                removeAllClass(temp);
-                temp.classList.add('fourtyninetysix');
-            } else {
-                removeAllClass(temp);
-                temp.classList.add('passed');
-            }
+    var els = document.getElementsByClassName('tile');
+    for(let i = 0; i < rowSize*colSize; i++){
+        var temp = els[i];
+        if(!temp.innerText){
+            removeAllClass(temp);
+            temp.classList.add('zero');
+        } else if(temp.innerText == 2 || temp.innerText < 4){
+            removeAllClass(temp);
+            temp.classList.add('two');
+        } else if(temp.innerText == 4 || temp.innerText < 8){
+            removeAllClass(temp);
+            temp.classList.add('four');
+        } else if(temp.innerText == 8 || temp.innerText < 16){
+            removeAllClass(temp);
+            temp.classList.add('eight');
+        } else if(temp.innerText == 16 || temp.innerText < 32){
+            removeAllClass(temp);
+            temp.classList.add('sixteen');
+        } else if(temp.innerText == 32 || temp.innerText < 64){
+            removeAllClass(temp);
+            temp.classList.add('thirtytwo');
+        } else if(temp.innerText == 64 || temp.innerText < 128){
+            removeAllClass(temp);
+            temp.classList.add('sixtyfour');
+        } else if(temp.innerText == 128 || temp.innerText < 256){
+            removeAllClass(temp);
+            temp.classList.add('onetwentyeight');
+        } else if(temp.innerText == 256 || temp.innerText < 512){
+            removeAllClass(temp);
+            temp.classList.add('twofiftysix');
+        } else if(temp.innerText == 512 || temp.innerText < 1024){
+            removeAllClass(temp);
+            temp.classList.add('fivetwelve');
+        } else if(temp.innerText == 1024 || temp.innerText < 2048){
+            removeAllClass(temp);
+            temp.classList.add('tentwentyfour');
+        } else if(temp.innerText == 2048){
+            removeAllClass(temp);
+            temp.classList.add('twentyfourtyeight');
+        } else if(temp.innerText.length < 5){
+            removeAllClass(temp);
+            temp.classList.add('fourtyninetysix');
+        } else {
+            removeAllClass(temp);
+            temp.classList.add('passed');
         }
     }
 }
@@ -448,40 +447,32 @@ function keepYourselfSafe(){
         title.innerText = "🖕"
     }
 }
-/*
-function toggleShadow(){
-    var empties = document.getElementsByClassName("tile");
-    if(isShadowToggled) {
-        for(var i = 0; i < 4; i++){
-            for(var j = 0; j < 4; j++){
-                var t = empties[i*4 + j];
-                if(isShadowToggled){
-                    t.style.boxShadow = "#0e0e0e00 -2px 2px 4px";
-                } else {
-                    t.style.boxShadow = "#0e0e0e38 -2px 2px 4px";
-                }
-                
-            }
+document.querySelector('#gridSize').addEventListener("click", function() {
+    tiles = [];
+    for(let i = (rowSize*colSize)-1; i >= 0; i--){
+        if(!gameboard.lastChild.classList.contains('fades')){
+            gameboard.removeChild(gameboard.lastChild);
         }
     }
-    if(isShadowToggled){
-        isShadowToggled = false;
-    } else {
-        isShadowToggled = true;
-    }
+    rowSize = rowSlider.value;
+    colSize = colSlider.value;
+    createGameboard();
+    gameboard.style.setProperty('--colSize', colSize);
+    gameboard.style.setProperty('--rowSize', rowSize);
+    //colors();
+})
+
+var rowSlider = document.getElementById("rowSlider");
+var rowVal = document.getElementById("rowVal");
+rowVal.innerHTML = rowSlider.value;
+
+rowSlider.oninput = function() {
+  rowVal.innerHTML = this.value;
 }
-function toggleParallax(){
-    var fades = document.getElementsByClassName("fades");
-    for(var i = 0; i < 8; i++){
-        var t = fades[i];
-        if(isParallax){
-            t.style.opacity = 0;
-            isParallax = false;
-        } else {
-            t.style.opacity = 1;
-            isParallax = true;
-        }
-    }
-    isParallax = false;
+var colSlider = document.getElementById("colSlider");
+var colVal = document.getElementById("colVal");
+colVal.innerHTML = colSlider.value;
+
+colSlider.oninput = function() {
+  colVal.innerHTML = this.value;
 }
-*/

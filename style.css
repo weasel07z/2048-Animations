@@ -6,8 +6,8 @@ body {
 }
 .container {
   margin:auto;
-  width: 75vw;
-  height: 75vw;
+  width: 75vmin;
+  height: 75vmin;
   text-align: center;
   user-select: none;
 }

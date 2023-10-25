@@ -16,6 +16,7 @@ body {
 
 .header {
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 h1 {
@@ -278,6 +279,7 @@ button {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #605858;
+  cursor: pointer;
 }
 
 .slider-container {
@@ -296,6 +298,12 @@ button {
   -webkit-transition: .2s;
   transition: opacity .2s;
   border-radius: 10px;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #eeac57;
+  cursor: pointer;
 }
 .slider:hover {
   opacity: 0.8;

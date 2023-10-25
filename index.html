@@ -9,23 +9,30 @@
         <div class="header">
           <h1 class="dipshit">2048</h1>
           <p id="title">Multiply the numbers to get to <strong>2048!</strong></p>
-          <hr class="normal">
+          
         </div>
-        <div class="gameboard"></div>
-        <hr class="top">
+        <hr>
+        <div class="gameboard">
+            <div class="fades">
+                <div class="left1 fades"></div>
+                <div class="left2 fades"></div>
+                <div class="left3 fades"></div>
+                <div class="left4 fades"></div>
+                <div class="right1 fades"></div>
+                <div class="right2 fades"></div>
+                <div class="right3 fades"></div>
+                <div class="right4 fades"></div>
+            </div>
+        </div>
+        <hr>
         <p title="teehee :3"><strong>HOW TO PLAY: </strong>Use the arrow keys to move the tiles. If two tiles with the same number hit together, they merge into one!<br> Press 'R' to restart!</p>
-        <div class="fades">
-            <div class="fades-front fades"></div>
-            <div class="left1 fades"></div>
-            <div class="left2 fades"></div>
-            <div class="left3 fades"></div>
-            <div class="left4 fades"></div>
-            <div class="right1 fades"></div>
-            <div class="right2 fades"></div>
-            <div class="right3 fades"></div>
-            <div class="right4 fades"></div>
-        </div>
         
+        <div class="button-container">
+            <button onclick="setMultiplier()">Multiplier</button>
+            <button id="reset" onclick="resetGame()">Reset</button>
+            <button id="setGridSize">Grid Size</button>
+        </div>
+        <div></div>
     </div>
     <script type="text/javascript" src="game.js"></script>
 </body>

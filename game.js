@@ -74,7 +74,7 @@ gameboard.addEventListener('touchmove', function (event) {
 gameboard.addEventListener('touchend', function (event) {
     let moved = false;
     event.preventDefault();
-    
+
     if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
         event.targetTouches.length > 0) {
       return; // Ignore if still touching with one or more fingers
@@ -177,11 +177,14 @@ function getTile(row, col){
 // Resets game to only 2 tiles
 function resetGame() {
   tiles.forEach(tile => {
-    tile.innerText = '';
-    tile.classList.remove('new', 'merged');
+    if(tile.innerText != ''){
+        tile.innerText = '';
+        tile.classList.remove('new', 'merged');
+    }
   });
   spawnRandomTile();
   spawnRandomTile();
+  colors();
 }
 // Initailizing for document on load
 createGameboard();

@@ -12,6 +12,7 @@
           
         </div>
         <hr>
+        
         <div class="grid-container"></div>
         <div class="gameboard">
             <div class="fades">
@@ -26,6 +27,8 @@
             </div>
         </div>
         <hr>
+        <p id="lossText"><strong>Game Over</strong></p>
+        <button onclick="resetGame()" class="gameOverButton" id="lossButton">Reset</button>
         <p title="teehee :3"><strong>HOW TO PLAY: </strong>Use the arrow keys to move the tiles. If two tiles with the same number hit together, they merge into one!<br> Press 'R' to restart!</p>
         
         <div class="button-container">
@@ -43,7 +46,6 @@
             <p class="colText">Columns: <span id="colVal"></span></p>
         </div>
         <div class="margins">&nbsp</div>
-        
         
     </div>
     <script type="text/javascript" src="game.js"></script>

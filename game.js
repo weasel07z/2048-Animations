@@ -43,6 +43,11 @@ document.addEventListener('keydown', function(key) {
       spawnRandomTile();
     }
     colors();
+    //console.log(hasPlayerLost())
+    if(hasPlayerLost()){
+        document.getElementById("lossButton").style.display = "block";
+        document.getElementById("lossText").style.display = "block";
+    }
 }, true);
 window.addEventListener("keydown", function(e) {
     if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
@@ -163,6 +168,7 @@ function createGameboard() {
 }
 // spawn random tiles
 function spawnRandomTile() {
+    
   const emptyTiles = tiles.filter(tile => !tile.innerText);
   const randomTile = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
   if(multiplier != 2){
@@ -183,6 +189,8 @@ function resetGame() {
     tile.innerText = '';
     tile.classList.remove('new', 'merged');
   });
+  document.getElementById("lossButton").style.display = "none";
+  document.getElementById("lossText").style.display = "none";
   spawnRandomTile();
   spawnRandomTile();
   colors();
@@ -475,4 +483,23 @@ colVal.innerHTML = colSlider.value;
 
 colSlider.oninput = function() {
   colVal.innerHTML = this.value;
+}
+
+function hasPlayerLost(){
+    for(var i = 0; i < 4; i++){
+        for(var j = 0; j < 4; j++){
+                if(getTile(i,j) == null){
+                      return false;
+                } else if(canMove(i-1, j) || canEat(i-1, j, getTile(i, j))){
+                      return false;
+                } else if(canMove(i+1,j) || canEat(i+1, j, getTile(i, j))){
+                      return false;
+                } else if(canMove(i,j-1) || canEat(i, j-1, getTile(i, j))){
+                      return false;
+                } else if(canMove(i,j+1) || canEat(i, j+1, getTile(i, j))){
+                      return false;
+                }
+        }
+    }
+    return true;
 }
